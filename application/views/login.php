@@ -10,7 +10,7 @@
     <link rel="icon" href="<?= base_url()?>assets/images/logo.png" type="image/x-icon">
     <link rel="shortcut icon" href="<?= base_url()?>assets/images/logo.png" type="image/x-icon">
     <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?render=onload&hl=en" async defer></script>
-    <title>Bappenda Kab. Sumedang</title>
+    <title>Tittle</title>
   </head>
   <body>
 <div class="container" id="container">
@@ -36,8 +36,8 @@
 		<div class="overlay">
 			
 			<div class="overlay-panel overlay-right">
-				<h1>Online Retribution System</h1>
-				<p>Bappenda Kabupaten Sumedang</p>
+				<h1>Smart Performa</h1>
+				
 			
 			</div>
 		</div>
@@ -46,14 +46,7 @@
 </div>
 </div>
   </body>
-<footer>
-	<p>
-		Created by
-		<a target="_blank" href="">ORS</a>
-		- Bappenda Kab. Sumedang
-		<a target="_blank" href=""></a>.
-	</p>
-</footer>
+
 
 </html>
 <style>
