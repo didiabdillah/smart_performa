@@ -28,10 +28,10 @@ class Login extends CI_Controller
 
         $recaptcha = $this->input->post('g-recaptcha-response');
         $response = $this->recaptcha->verifyResponse($recaptcha);
-        $nik = $this->input->post('nik');
+        $no_pegawai = $this->input->post('no_pegawai');
         $password = $this->input->post('password');
         $where = array(
-            'nik' => $nik,
+            'no_pegawai' => $no_pegawai,
             'password' => md5($password)
         );
 
@@ -45,7 +45,7 @@ class Login extends CI_Controller
                     $user_id = $row->id;
                     $role = $row->role;
                     $full_name = $row->nama;
-                    $skpd = $row->skpd;
+                    $unit = $row->unit;
                   
                 }
 
@@ -54,7 +54,7 @@ class Login extends CI_Controller
                     'user_id' => $user_id,
                     'nama' => $full_name,
                     'role' => $role,
-                    'skpd' => $skpd,
+                    'unit' => $unit,
                     'status' => "login"
                 );
 

@@ -10,7 +10,7 @@
     <link rel="icon" href="<?= base_url()?>assets/images/logo.png" type="image/x-icon">
     <link rel="shortcut icon" href="<?= base_url()?>assets/images/logo.png" type="image/x-icon">
     <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?render=onload&hl=en" async defer></script>
-    <title>Tittle</title>
+    <title>Smart Performa</title>
   </head>
   <body>
 <div class="container" id="container">
@@ -23,7 +23,7 @@
 			
 			</div>
 			
-			<input type="number" placeholder="NIK" name="nik"/>
+			<input type="number" placeholder="Nomor Pegawai" name="no_pegawai"/>
 			<input type="password" placeholder="Password" name="password"/>
             <div class="g-recaptcha" data-sitekey="6Lc8tcYUAAAAALcpakPz65iIAYTmng45ytBGjZI7" type="captha"></div>
 			<a href="#">Forgot your password?</a>
