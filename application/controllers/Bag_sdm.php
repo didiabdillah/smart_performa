@@ -70,6 +70,9 @@ class Bag_sdm extends CI_Controller
         $data['ongoing'] = $this->detail->getOngoing($id);
         $data['job'] = $this->detail->getJobSuccess($id);
         $data['top'] = $this->detail->getTopFive($id);
+        $data['sukses'] = $this->detail->getTaskCompleted($id);
+        $data['failed'] = $this->detail->getTaskIncompleted($id);
+        $data['beres'] = $this->detail->getCompleted($id);
         $this->template->load('template', 'sdm/performa_pekerja', $data);
     }
 }

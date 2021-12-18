@@ -47,4 +47,33 @@ class M_sdm extends CI_Model
         ";
         return $this->db->query($query)->result_array();
     }
+
+    public function getTaskCompleted($id)
+    {
+        $query = "SELECT MONTH(`tanggal_selesai`) AS bulan, COUNT(`status`) AS jumlah FROM `performa` WHERE `pegawai` = $id AND status = 3
+        ";
+        return $this->db->query($query)->row_array();
+    }
+
+    public function getTaskIncompleted($id)
+    {
+        $query = "SELECT MONTH(`tanggal_deadline`) AS bulan, COUNT(`status`) AS jumlah FROM `performa` WHERE `pegawai` = $id AND status < 2
+        ";
+        return $this->db->query($query)->row_array();
+    }
+
+    public function getCompleted($id)
+    {
+        $query = "SELECT COUNT(`status`) AS completed
+        FROM `performa` WHERE `performa`.`pegawai` = $id AND `status` = 3
+        ";
+        return $this->db->query($query)->row_array();
+    }
+
+    public function getEmployee()
+    {
+        $query = "SELECT COUNT(`id`) AS total FROM `users` 
+        ";
+        return $this->db->query($query)->row_array();
+    }
 }

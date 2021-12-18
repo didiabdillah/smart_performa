@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-md-6 col-lg-6 col-xl-6 box-col-6">
                 <div class="card custom-card p-0">
-                    <div class="card-profile"><img class="rounded-circle" src="<?= base_url() ?>assets/cuba/assets/images/user/2.png" alt=""></div>
+                    <div class="card-profile m-4"><img class="rounded-circle" src="<?= base_url() ?>assets/cuba/assets/images/user/2.png" alt=""></div>
                     <ul class="card-social">
                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                         <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -41,14 +41,21 @@
                         </div>
                         <div class="col-4 col-sm-4">
                             <h6>Job Success</h6>
-                            <h5><span class="counter"><?= ceil($job['jobsuccess']) ?></span>%</h5>
+                            <h5><span class="counter"><?= floatval($job['jobsuccess']) ?></span>%</h5>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-6 box-col-6">
-                <div class="card custom-card p-0">
-                    Overall Performance
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Overall Performance</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="knob-block text-center">
+                            <input class="knob" data-width="200" data-thickness=".1" data-angleoffset="90" data-fgcolor="#7366ff" data-linecap="round" value="<?= (floatval($job['jobsuccess']) * floatval($rating['rating'])) / 5 ?>">
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -65,7 +72,7 @@
                                     <div class="row">
                                         <div class="col-3">
                                             <h5>Task Review</h5>
-                                            <div id="chart-widget6"></div>
+                                            <div class="chart4"></div>
                                         </div>
                                         <div class="col-3">
                                             <h5>Job Success</h5>
@@ -85,7 +92,7 @@
                                                 <div class="rating-container">
                                                     <div class="star-ratings">
                                                         <div class="stars stars-example-fontawesome-o">
-                                                            <select id="u-rating-fontawesome-o" name="rating" data-current-rating="<?= ceil($rating['rating']) ?>" autocomplete="off">
+                                                            <select id="u-rating-fontawesome-o" name="rating" data-current-rating="<?= floatval($rating['rating']) ?>" autocomplete="off">
                                                                 <option value="1">1</option>
                                                                 <option value="2">2</option>
                                                                 <option value="3">3</option>
@@ -106,66 +113,94 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-header">
-                    <h5>Top 5 Task Solved</h5>
-                    <div class="card-header-right">
-                        <ul class="list-unstyled card-option">
-                            <li><i class="fa fa-spin fa-cog"></i></li>
-                            <li><i class="view-html fa fa-code"></i></li>
-                            <li><i class="icofont icofont-maximize full-card"></i></li>
-                            <li><i class="icofont icofont-minus minimize-card"></i></li>
-                            <li><i class="icofont icofont-refresh reload-card"></i></li>
-                            <li><i class="icofont icofont-error close-card"></i></li>
-                        </ul>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Top 5 Task Solved</h5>
+                        <div class="card-header-right">
+                            <ul class="list-unstyled card-option">
+                                <li><i class="fa fa-spin fa-cog"></i></li>
+                                <li><i class="view-html fa fa-code"></i></li>
+                                <li><i class="icofont icofont-maximize full-card"></i></li>
+                                <li><i class="icofont icofont-minus minimize-card"></i></li>
+                                <li><i class="icofont icofont-refresh reload-card"></i></li>
+                                <li><i class="icofont icofont-error close-card"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="user-status table-responsive best-seller-table mb-0">
+                            <table class="table table-bordernone">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Details</th>
+                                        <th class="text-end" scope="col">Status</th>
+                                        <th scope="col">Rating</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $i = 1 ?>
+                                    <?php foreach ($top as $row) : ?>
+                                        <tr>
+                                            <td><?= $i++ ?></td>
+                                            <td><?= $row['deskripsi_layanan'] ?></td>
+                                            <td>
+                                                <?php if ($row['status'] == 1) : ?>
+                                                    <span class="badge badge-light-info"><i class="me-2" data-feather="clock"></i> In process</span>
+                                                <?php elseif ($row['status'] == 2) : ?>
+                                                    <span class="badge badge-light-warning"><i class="me-2" data-feather="rotate-cw"></i> In Review</span>
+                                                <?php elseif ($row['status'] == 3) : ?>
+                                                    <span class="badge badge-light-success"><i class="me-2" data-feather="check"></i> Done</span>
+                                            </td>
+                                        <?php endif; ?>
+                                        <td>
+                                            <?php if ($row['performa'] == 5) : ?>
+                                                <i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i>
+                                            <?php elseif ($row['performa'] == 4) : ?>
+                                                <i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rate-blank"></i>
+                                            <?php elseif ($row['performa'] == 3) : ?>
+                                                <i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i>
+                                            <?php elseif ($row['performa'] == 2) : ?>
+                                                <i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i>
+                                            <?php elseif ($row['performa'] == 1) : ?>
+                                                <i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i>
+                                            <?php elseif ($row['performa'] == 0) : ?>
+                                                <i class="icofont icofont-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i>
+                                        </td>
+                                        </tr>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="user-status table-responsive best-seller-table mb-0">
-                        <table class="table table-bordernone">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Details</th>
-                                    <th class="text-end" scope="col">Status</th>
-                                    <th scope="col">Rating</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i = 1 ?>
-                                <?php foreach ($top as $row) : ?>
-                                    <tr>
-                                        <td><?= $i++ ?></td>
-                                        <td><?= $row['deskripsi_layanan'] ?></td>
-                                        <td>
-                                            <?php if ($row['status'] == 1) : ?>
-                                                <span class="badge badge-light-info"><i class="me-2" data-feather="clock"></i> In process</span>
-                                            <?php elseif ($row['status'] == 2) : ?>
-                                                <span class="badge badge-light-warning"><i class="me-2" data-feather="rotate-cw"></i> In Review</span>
-                                            <?php elseif ($row['status'] == 3) : ?>
-                                                <span class="badge badge-light-success"><i class="me-2" data-feather="check"></i> Done</span>
-                                        </td>
-                                    <?php endif; ?>
-                                    <td>
-                                        <?php if ($row['performa'] == 5) : ?>
-                                            <i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i>
-                                        <?php elseif ($row['performa'] == 4) : ?>
-                                            <i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rate-blank"></i>
-                                        <?php elseif ($row['performa'] == 3) : ?>
-                                            <i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i>
-                                        <?php elseif ($row['performa'] == 2) : ?>
-                                            <i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i>
-                                        <?php elseif ($row['performa'] == 1) : ?>
-                                            <i class="icofont icofont-ui-rating"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i>
-                                        <?php elseif ($row['performa'] == 0) : ?>
-                                            <i class="icofont icofont-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i><i class="icofont icofont-ui-rate-blank"></i>
-                                    </td>
-                                    </tr>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
+            </div>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Task Completed</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Task Incompleted</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart3"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

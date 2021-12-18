@@ -670,8 +670,160 @@
       });
     </script>
   <?php
-  }
+  } elseif ($this->session->userdata('role') == '1' && $this->uri->segment(3) == 'Bag_sdm' || $this->session->userdata('role') == '3' && $this->uri->segment(1) == 'Bag_sdm') {
   ?>
+    <script>
+      $(function() {
+        $('.chart2').append('<canvas id="myChart2"></canvas>');
+
+        const labels = [
+          'Januari',
+          'Februari',
+          'Maret',
+          'April',
+          'Mei',
+          'June',
+          'Juli',
+          'Agustus',
+          'September',
+          'Oktober',
+          'November',
+          'Desember',
+        ];
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [
+              <?php if ($sukses['bulan'] == 1) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 2) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 3) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 4) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 5) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 6) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 7) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 8) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 9) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 10) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 11) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 12) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>
+            ],
+          }]
+        };
+        const config = {
+          type: 'line',
+          data: data,
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        };
+
+        const myChart = new Chart(
+          document.getElementById('myChart2'),
+          config
+        );
+      });
+    </script>
+    <script>
+      $(function() {
+        $('.chart3').append('<canvas id="myChart3"></canvas>');
+
+        const labels = [
+          'Januari',
+          'Februari',
+          'Maret',
+          'April',
+          'Mei',
+          'Juni',
+          'Juli',
+          'Agustus',
+          'September',
+          'Oktober',
+          'November',
+          'Desember',
+        ];
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [
+              <?php if ($failed['bulan'] == 1) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 2) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 3) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 4) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 5) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 6) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 7) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 8) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 9) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 10) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 11) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 12) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>
+            ],
+          }]
+        };
+        const config = {
+          type: 'line',
+          data: data,
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        };
+
+        const myChart = new Chart(
+          document.getElementById('myChart3'),
+          config
+        );
+      });
+    </script>
+    <script>
+      $(function() {
+        $('.chart4').append('<canvas id="myChart4"></canvas>');
+        const labels = ['Completed', 'Incompleted'];
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'Total',
+            data: [<?= $beres['completed'] ?>, <?= $ongoing['ongoing'] ?>],
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgb(255, 99, 132)',
+          }, ]
+        };
+        const config = {
+          type: 'bar',
+          data: data,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false,
+              },
+              title: {
+                display: true,
+              }
+            }
+          },
+        };
+        const myChart = new Chart(
+          document.getElementById('myChart4'),
+          config
+        );
+      });
+    </script>
+
+  <?php } ?>
   <!-- END CHART JS -->
 
   <?php if ($this->uri->segment(1) == 'Dashboard'  && $this->uri->segment(2) == 'data_user') {
