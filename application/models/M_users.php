@@ -58,6 +58,7 @@ class M_users extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
     function count_filtered()
     {
         $this->_get_datatables_query();

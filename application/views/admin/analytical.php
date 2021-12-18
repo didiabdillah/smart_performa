@@ -22,7 +22,7 @@
                           <div class="media static-top-widget">
                               <div class="media-body">
                                   <h6 class="font-roboto">Number Of Employee</h6>
-                                  <h4 class="mb-0 counter">6659</h4>
+                                  <h4 class="mb-0"><?= $number_of_employee; ?></h4>
                               </div>
                           </div>
                       </div>
@@ -34,7 +34,7 @@
                           <div class="media static-top-widget">
                               <div class="media-body">
                                   <h6 class="font-roboto">Total Task Accepted</h6>
-                                  <h4 class="mb-0 counter">6659</h4>
+                                  <h4 class="mb-0"><?= $total_task_accepted; ?></h4>
                               </div>
                           </div>
                       </div>
@@ -46,7 +46,7 @@
                           <div class="media static-top-widget">
                               <div class="media-body">
                                   <h6 class="font-roboto">Total Task Completed</h6>
-                                  <h4 class="mb-0 counter">6659</h4>
+                                  <h4 class="mb-0"><?= $total_task_completed; ?></h4>
                               </div>
                           </div>
                       </div>

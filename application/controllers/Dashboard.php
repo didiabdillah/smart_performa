@@ -9,6 +9,7 @@ class Dashboard extends CI_Controller
         parent::__construct();
         $this->load->helper('url', 'slug');
         $this->load->model('Dashboard_model', 'model');
+        $this->load->model('Graph_model', 'graph');
 
         if (!$this->session->userdata('user_id')) {
             redirect(base_url('Login'));
@@ -37,12 +38,24 @@ class Dashboard extends CI_Controller
 
     function home()
     {
-        $this->template->load('template', 'admin/dashboard');
+        $data = [
+            'number_of_employee'    => $this->graph->get_number_of_employee(),
+            'total_task_accepted'   => $this->graph->get_total_task_accepted(),
+            'total_task_completed'   => $this->graph->get_total_task_completed(),
+        ];
+
+        $this->template->load('template', 'admin/dashboard', $data);
     }
 
     function analytical()
     {
-        $this->template->load('template', 'admin/analytical');
+        $data = [
+            'number_of_employee'    => $this->graph->get_number_of_employee(),
+            'total_task_accepted'   => $this->graph->get_total_task_accepted(),
+            'total_task_completed'   => $this->graph->get_total_task_completed(),
+        ];
+
+        $this->template->load('template', 'admin/analytical', $data);
     }
 
 
