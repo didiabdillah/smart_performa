@@ -49,6 +49,7 @@
 </head>
 
 <body>
+  <div class="base-url" data-baseurl="<?= base_url(); ?>"></div>
   <!-- tap on top starts-->
   <div class="tap-top"><i data-feather="chevrons-up"></i></div>
   <!-- tap on tap ends-->
@@ -124,14 +125,16 @@
                 </li>
                 <li class="sidebar-title">
                   <div>
-                    <h6 class="lan-1">General</h6>
-                    <p class="lan-2">Dashboards,widgets & layout.</p>
+                    <h6 class="lan-00">Menu</h6>
                   </div>
                 </li>
                 <li class="dropdown"><a class="nav-link menu-title link-nav" href="<?= base_url() ?>Dashboard/home"><i data-feather="home"></i><span class="lan-3">Dashboard</span>
                   </a>
                 </li>
                 <?php if ($this->session->userdata('role') == '1') { ?>
+                  <li class="dropdown"><a class="nav-link menu-title link-nav" href="<?= base_url() ?>Dashboard/analytical"><i data-feather="bar-chart-2"></i><span class="lan-0">Analytical Data</span>
+                    </a>
+                  </li>
 
                   <li class="dropdown"><a class="nav-link menu-title" href="#" data-original-title="" title=""><i data-feather="database"></i><span>Data Master</span>
                       <div class="according-menu"><i class="fa fa-angle-right"></i></div>
@@ -237,7 +240,406 @@
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script src="https://cdn.rawgit.com/igorescobar/jQuery-Mask-Plugin/1ef022ab/dist/jquery.mask.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="<?= base_url() ?>assets/js/utils.js"></script>
 
+  <!-- CHART JS -->
+  <?php
+  if ($this->session->userdata('role') == '1' && $this->uri->segment(1) == 'Dashboard' && $this->uri->segment(2) == 'analytical') { //Admin Chart Script
+  ?>
+    <script>
+      $(function() {
+        $('.chart1').append('<canvas id="myChart1"></canvas>');
+
+        const DATA_COUNT = 5;
+        const NUMBER_CFG = {
+          count: DATA_COUNT,
+          min: 0,
+          max: 100
+        };
+
+        const data = {
+          labels: ['Not Good', 'Good'],
+          datasets: [{
+            label: 'Dataset 1',
+            data: [1, 2],
+            backgroundColor: Object.values(['rgb(255, 99, 132)', 'rgb(75, 192, 192)']),
+          }]
+        };
+
+        const config = {
+          type: 'pie',
+          data: data,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false,
+              },
+              title: {
+                display: true,
+                text: ''
+              }
+            }
+          },
+        };
+
+        const myChart = new Chart(
+          document.getElementById('myChart1'),
+          config
+        );
+      });
+    </script>
+    <script>
+      $(function() {
+        $('.chart2').append('<canvas id="myChart2"></canvas>');
+
+        const labels = [
+          'Januari',
+          'Februari',
+          'Maret',
+          'April',
+          'Mei',
+          'Juni',
+          'Juli',
+          'Agustus',
+          'September',
+          'Oktober',
+          'November',
+          'Desember',
+        ];
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45],
+          }]
+        };
+        const config = {
+          type: 'line',
+          data: data,
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        };
+
+        const myChart = new Chart(
+          document.getElementById('myChart2'),
+          config
+        );
+      });
+    </script>
+    <script>
+      $(function() {
+        $('.chart3').append('<canvas id="myChart3"></canvas>');
+
+        const labels = [
+          'Januari',
+          'Februari',
+          'Maret',
+          'April',
+          'Mei',
+          'Juni',
+          'Juli',
+          'Agustus',
+          'September',
+          'Oktober',
+          'November',
+          'Desember',
+        ];
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45],
+          }]
+        };
+        const config = {
+          type: 'line',
+          data: data,
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        };
+
+        const myChart = new Chart(
+          document.getElementById('myChart3'),
+          config
+        );
+      });
+    </script>
+  <?php
+  } elseif ($this->session->userdata('role') == '1' && $this->uri->segment(1) == 'Dashboard' || $this->session->userdata('role') == '1' && $this->uri->segment(1) == 'Admin') { //Admin Chart Script
+  ?>
+    <script>
+      $(function() {
+        $('.chart1').append('<canvas id="myChart1"></canvas>');
+
+        const DATA_COUNT = 5;
+        const NUMBER_CFG = {
+          count: DATA_COUNT,
+          min: 0,
+          max: 100
+        };
+
+        const data = {
+          labels: ['Not Good', 'Good'],
+          datasets: [{
+            label: 'Dataset 1',
+            data: [1, 2],
+            backgroundColor: Object.values(['rgb(255, 99, 132)', 'rgb(75, 192, 192)']),
+          }]
+        };
+
+        const config = {
+          type: 'pie',
+          data: data,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false,
+              },
+              title: {
+                display: true,
+                text: ''
+              }
+            }
+          },
+        };
+
+        const myChart = new Chart(
+          document.getElementById('myChart1'),
+          config
+        );
+      });
+    </script>
+    <script>
+      $(function() {
+        $('.chart2').append('<canvas id="myChart2"></canvas>');
+        const labels = [
+          'Avg Rating',
+          'Avg Completion',
+          'Avg Speed Completion',
+        ];
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [4, 10, 5],
+          }]
+        };
+        const config = {
+          type: 'bar',
+          data: data,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false,
+              },
+            }
+          },
+        };
+        const myChart = new Chart(
+          document.getElementById('myChart2'),
+          config
+        );
+      });
+    </script>
+    <script>
+      $(function() {
+        $('.chart3').append('<canvas id="myChart3"></canvas>');
+        const labels = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
+        const data = {
+          labels: labels,
+          datasets: [{
+              label: 'Dataset 1',
+              data: [1, 2, 3, 4, 5],
+              borderColor: 'rgb(255, 99, 132)',
+              backgroundColor: 'rgb(255, 99, 132)',
+            },
+            {
+              label: 'Dataset 2',
+              data: [5, 4, 3, 2, 1],
+              borderColor: 'rgb(54, 162, 235)',
+              backgroundColor: 'rgb(54, 162, 235)',
+            },
+            {
+              label: 'Dataset 3',
+              data: [3, 2, 1, 4, 5],
+              borderColor: 'rgb(75, 192, 192)',
+              backgroundColor: 'rgb(75, 192, 192)',
+            }
+          ]
+        };
+        const config = {
+          type: 'bar',
+          data: data,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false,
+              },
+              title: {
+                display: true,
+              }
+            }
+          },
+        };
+        const myChart = new Chart(
+          document.getElementById('myChart3'),
+          config
+        );
+      });
+    </script>
+  <?php
+  } else  if ($this->session->userdata('role') == '2' && $this->uri->segment(1) == 'Dashboard' || $this->session->userdata('role') == '2' && $this->uri->segment(1) == 'Manager') { //Manager Chart Script
+  ?>
+    <script>
+      $(function() {
+        $('.chart1').append('<canvas id="myChart1"></canvas>');
+
+        const DATA_COUNT = 5;
+        const NUMBER_CFG = {
+          count: DATA_COUNT,
+          min: 0,
+          max: 100
+        };
+
+        const data = {
+          labels: ['Not Good', 'Good'],
+          datasets: [{
+            label: 'Dataset 1',
+            data: [1, 2],
+            backgroundColor: Object.values(['rgb(255, 99, 132)', 'rgb(75, 192, 192)']),
+          }]
+        };
+
+        const config = {
+          type: 'pie',
+          data: data,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false,
+              },
+              title: {
+                display: true,
+                text: ''
+              }
+            }
+          },
+        };
+
+        const myChart = new Chart(
+          document.getElementById('myChart1'),
+          config
+        );
+      });
+    </script>
+    <script>
+      $(function() {
+        $('.chart2').append('<canvas id="myChart2"></canvas>');
+        const labels = [
+          'Avg Rating',
+          'Avg Completion',
+          'Avg Speed Completion',
+        ];
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [4, 10, 5],
+          }]
+        };
+        const config = {
+          type: 'bar',
+          data: data,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false,
+              },
+            }
+          },
+        };
+        const myChart = new Chart(
+          document.getElementById('myChart2'),
+          config
+        );
+      });
+    </script>
+    <script>
+      $(function() {
+        $('.chart3').append('<canvas id="myChart3"></canvas>');
+        const labels = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
+        const data = {
+          labels: labels,
+          datasets: [{
+              label: 'Dataset 1',
+              data: [1, 2, 3, 4, 5],
+              borderColor: 'rgb(255, 99, 132)',
+              backgroundColor: 'rgb(255, 99, 132)',
+            },
+            {
+              label: 'Dataset 2',
+              data: [5, 4, 3, 2, 1],
+              borderColor: 'rgb(54, 162, 235)',
+              backgroundColor: 'rgb(54, 162, 235)',
+            },
+            {
+              label: 'Dataset 3',
+              data: [3, 2, 1, 4, 5],
+              borderColor: 'rgb(75, 192, 192)',
+              backgroundColor: 'rgb(75, 192, 192)',
+            }
+          ]
+        };
+        const config = {
+          type: 'bar',
+          data: data,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false,
+              },
+              title: {
+                display: true,
+              }
+            }
+          },
+        };
+        const myChart = new Chart(
+          document.getElementById('myChart3'),
+          config
+        );
+      });
+    </script>
+  <?php
+  }
+  ?>
+  <!-- END CHART JS -->
 
   <?php if ($this->uri->segment(1) == 'Dashboard'  && $this->uri->segment(2) == 'data_user') {
     $this->load->view('ajax/users');
