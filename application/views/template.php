@@ -497,28 +497,19 @@
     <script>
       $(function() {
         $('.chart3').append('<canvas id="myChart3"></canvas>');
-        const labels = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
+        const labels = [
+          'Avg Rating',
+          'Avg Completion',
+          'Avg Speed Completion',
+        ];
         const data = {
           labels: labels,
           datasets: [{
-              label: 'Dataset 1',
-              data: [1, 2, 3, 4, 5],
-              borderColor: 'rgb(255, 99, 132)',
-              backgroundColor: 'rgb(255, 99, 132)',
-            },
-            {
-              label: 'Dataset 2',
-              data: [5, 4, 3, 2, 1],
-              borderColor: 'rgb(54, 162, 235)',
-              backgroundColor: 'rgb(54, 162, 235)',
-            },
-            {
-              label: 'Dataset 3',
-              data: [3, 2, 1, 4, 5],
-              borderColor: 'rgb(75, 192, 192)',
-              backgroundColor: 'rgb(75, 192, 192)',
-            }
-          ]
+            label: 'My First dataset',
+            backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(75, 192, 192)'],
+            borderColor: 'rgb(255, 99, 132)',
+            data: [4, 10, 5],
+          }]
         };
         const config = {
           type: 'bar',
@@ -529,9 +520,6 @@
               legend: {
                 display: false,
               },
-              title: {
-                display: true,
-              }
             }
           },
         };
