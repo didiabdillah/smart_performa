@@ -64,6 +64,8 @@ class Layanan extends CI_Controller
         //output to json format
         echo json_encode($output);
     }
+
+
     public function ajax_list()
     {
         if (!$this->input->is_ajax_request()) {

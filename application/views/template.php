@@ -32,11 +32,16 @@
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/cuba/assets/css/chartist.css">
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/cuba/assets/css/date-picker.css">
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/cuba/assets/css/prism.css">
+  <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/cuba/assets/css/photoswipe.css">
   <!-- Plugins css Ends-->
+
+  <!-- Owlcarousel css -->
+  <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/cuba/assets/css/owlcarousel.css">
   <!-- Bootstrap css-->
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/cuba/assets/css/bootstrap.css">
   <!-- App css-->
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/cuba/assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/scrollbar.css">
   <link id="color" rel="stylesheet" href="<?= base_url() ?>assets/cuba/assets/css/color-2.css" media="screen">
   <!-- Responsive css-->
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/cuba/assets/css/responsive.css">
@@ -154,6 +159,11 @@
                 ?>
                   <li class="dropdown"><a class="nav-link menu-title link-nav" href="<?= base_url() ?>Manager/list_pekerjaan" data-original-title="" title=""><i data-feather="archive"></i><span>List Pekerjaan</span></a></li>
                 <?php } ?>
+                <?php
+                if ($this->session->userdata('role') == '3') {
+                ?>
+                  <li class="dropdown"><a class="nav-link menu-title link-nav" href="<?= base_url() ?>Bag_sdm/list_pekerja" data-original-title="" title=""><i data-feather="archive"></i><span>List Pegawai</span></a></li>
+                <?php } ?>
               </ul>
 
             </div>
@@ -199,6 +209,7 @@
   <script src="<?= base_url() ?>assets/cuba/assets/js/chart/knob/knob-chart.js"></script>
   <script src="<?= base_url() ?>assets/cuba/assets/js/chart/apex-chart/apex-chart.js"></script>
   <script src="<?= base_url() ?>assets/cuba/assets/js/chart/apex-chart/stock-prices.js"></script>
+  <script src="<?= base_url() ?>assets/cuba/assets/js/chart/apex-chart/moment.min.js"></script>
   <script src="<?= base_url() ?>assets/cuba/assets/js/notify/bootstrap-notify.min.js"></script>
   <!-- <script src="<?= base_url() ?>assets/cuba/assets/js/dashboard/default.js"></script> -->
   <script src="<?= base_url() ?>assets/cuba/assets/js/notify/index.js"></script>
@@ -210,12 +221,34 @@
     <script src="<?= base_url() ?>assets/cuba/assets/js/typeahead/typeahead.custom.js"></script> -->
   <!-- <script src="<?= base_url() ?>assets/cuba/assets/js/typeahead-search/handlebars.js"></script> -->
   <!-- <script src="<?= base_url() ?>assets/cuba/assets/js/typeahead-search/typeahead-custom.js"></script> -->
+  <script src="<?= base_url() ?>assets/cuba/assets/js/photoswipe/photoswipe.min.js"></script>
+  <script src="<?= base_url() ?>assets/cuba/assets/js/photoswipe/photoswipe.js"></script>
+  <script src="<?= base_url() ?>assets/cuba/assets/js/photoswipe/photoswipe-ui-default.min.js"></script>
+  <script src="<?= base_url() ?>assets/cuba/assets/js/counter/jquery.waypoints.min.js"></script>
+  <script src="<?= base_url() ?>assets/cuba/assets/js/counter/jquery.counterup.min.js"></script>
+  <script src="<?= base_url() ?>assets/cuba/assets/js/counter/counter-custom.js"></script>
   <script src="<?= base_url() ?>assets/cuba/assets/js/tooltip-init.js"></script>
+  <script src="<?= base_url() ?>assets/cuba/assets/js/prism/prism.min.js"></script>
+  <script src="<?= base_url() ?>assets/cuba/assets/js/clipboard/clipboard.min.js"></script>
+
+
+  <!-- Knob js -->
+  <script src="<?= base_url() ?>assets/cuba/assets/js/chart/knob/knob.min.js"></script>
+  <script src="<?= base_url() ?>assets/cuba/assets/js/chart/knob/knob-chart.js"></script>
+
+  <script src="<?= base_url() ?>assets/cuba/assets/js/owlcarousel/owl.carousel.js"></script>
+  <script src="<?= base_url() ?>assets/cuba/assets/js/general-widget.js"></script>
+  <script src="<?= base_url() ?>assets/cuba/assets/js/height-equal.js"></script>
   <!-- Plugins JS Ends-->
   <!-- Theme js-->
   <script src="<?= base_url() ?>assets/cuba/assets/js/script.js"></script>
   <script src="<?= base_url() ?>assets/cuba/assets/js/theme-customizer/customizer.js"></script>
   <script src="<?= base_url() ?>assets/cuba/assets/js/chart/chartjs/chart.min.js"></script>
+  <script src="<?= base_url() ?>assets/cuba/assets/js/chart-widget.js"></script>
+
+  <!-- Google Chart -->
+  <script src="<?= base_url() ?>assets/cuba/assets/js/chart/google/google-chart-loader.js"></script>
+  <script src="<?= base_url() ?>assets/cuba/assets/js/chart/google/google-chart.js"></script>
 
   <!-- <script src="<?= base_url() ?>assets/cuba/assets/js/chart/chartjs/chart.custom.js"></script> -->
 
@@ -253,6 +286,8 @@
     $this->load->view('ajax/layanan');
   } elseif ($this->uri->segment(1) == 'Manager'  && $this->uri->segment(2) == 'list_pekerjaan') {
     $this->load->view('ajax/manager');
+  } elseif ($this->uri->segment(1) == 'Bag_sdm'  && $this->uri->segment(2) == 'list_pekerja') {
+    $this->load->view('ajax/sdm');
   }
   ?>
 
