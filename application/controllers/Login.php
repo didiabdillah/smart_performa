@@ -25,7 +25,6 @@ class Login extends CI_Controller
 
     function do_login()
     {
-
         $recaptcha = $this->input->post('g-recaptcha-response');
         $response = $this->recaptcha->verifyResponse($recaptcha);
         $no_pegawai = $this->input->post('no_pegawai');
@@ -46,10 +45,9 @@ class Login extends CI_Controller
                     $role = $row->role;
                     $full_name = $row->nama;
                     $unit = $row->unit;
-                  
                 }
 
-                
+
                 $data_session = array(
                     'user_id' => $user_id,
                     'nama' => $full_name,
@@ -64,9 +62,15 @@ class Login extends CI_Controller
 
                 redirect(base_url("Dashboard"));
             } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+    Wrong Password
+    </div>');
                 redirect(base_url("Login"));
             }
         } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+    Wrong Password
+    </div>');
             redirect(base_url("Login"));
         }
     }

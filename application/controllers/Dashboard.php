@@ -13,7 +13,7 @@ class Dashboard extends CI_Controller {
             redirect(base_url('Login'));
         }
 
-        require_once 'vendor/autoload.php';
+        // require_once 'vendor/autoload.php';
        
 	}
 

@@ -17,6 +17,7 @@
 	<div class="row">
         <div class="col-md-6">
 	<div class="form-container sign-in-container">
+		<?= $this->session->flashdata('message'); ?>
 		<form action="<?= base_url() ?>Login/do_login" method="post">
 			<h1>Sign in</h1>
 			<div class="social-container">
