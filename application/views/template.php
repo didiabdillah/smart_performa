@@ -440,172 +440,173 @@
       $(document).on('click', '.submit-select-date', function() {
         const tanggal = $('.select-date').val();
 
-        // New Overall Health Index
-        $('#myChart1').remove();
-        $('.chart1').append('<canvas id="myChart1"></canvas>');
-        $.ajax({
-          url: "<?php echo base_url(); ?>/GraphAjax/overall_health_index_date",
-          type: 'post',
-          dataType: 'json',
-          data: {
-            tanggal: tanggal
-          },
-          success: function(result) {
+        if (tanggal) {
+          // New Overall Health Index
+          $('#myChart1').remove();
+          $('.chart1').append('<canvas id="myChart1"></canvas>');
+          $.ajax({
+            url: "<?php echo base_url(); ?>/GraphAjax/overall_health_index_date",
+            type: 'post',
+            dataType: 'json',
+            data: {
+              tanggal: tanggal
+            },
+            success: function(result) {
 
-            const DATA_COUNT = 5;
-            const NUMBER_CFG = {
-              count: DATA_COUNT,
-              min: 0,
-              max: 100
-            };
+              const DATA_COUNT = 5;
+              const NUMBER_CFG = {
+                count: DATA_COUNT,
+                min: 0,
+                max: 100
+              };
 
-            const data = {
-              labels: [
-                'Buruk',
-                'Baik'
-              ],
-              datasets: [{
-                label: 'Overall Health Index',
-                data: result,
-                backgroundColor: [
-                  'rgb(255, 99, 132)',
-                  'rgb(255, 205, 86)'
+              const data = {
+                labels: [
+                  'Buruk',
+                  'Baik'
                 ],
-                hoverOffset: 4
-              }]
-            };
-            const config = {
-              type: 'doughnut',
-              data: data,
-            };
+                datasets: [{
+                  label: 'Overall Health Index',
+                  data: result,
+                  backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 205, 86)'
+                  ],
+                  hoverOffset: 4
+                }]
+              };
+              const config = {
+                type: 'doughnut',
+                data: data,
+              };
 
-            const myChart = new Chart(
-              document.getElementById('myChart1'),
-              config
-            );
+              const myChart = new Chart(
+                document.getElementById('myChart1'),
+                config
+              );
 
-          }
-        });
+            }
+          });
 
-        // New Top 4 Performer Detail
-        $('#topFourTable').remove();
-        $.ajax({
-          url: "<?php echo base_url(); ?>/GraphAjax/top_four_performer_date",
-          type: 'post',
-          data: {
-            tanggal: tanggal
-          },
-          success: function(result) {
-            $('.top-four-performer').html(result);
-          }
-        });
+          // New Top 4 Performer Detail
+          $('#topFourTable').remove();
+          $.ajax({
+            url: "<?php echo base_url(); ?>/GraphAjax/top_four_performer_date",
+            type: 'post',
+            data: {
+              tanggal: tanggal
+            },
+            success: function(result) {
+              $('.top-four-performer').html(result);
+            }
+          });
 
-        // New Task Completed
-        $('#myChart2').remove();
-        $('.chart2').append('<canvas id="myChart2"></canvas>');
-        $.ajax({
-          url: "<?php echo base_url(); ?>/GraphAjax/task_completed_date",
-          type: 'post',
-          dataType: 'json',
-          data: {
-            tanggal: tanggal
-          },
-          success: function(result) {
-            const labels = [
-              'Januari',
-              'Februari',
-              'Maret',
-              'April',
-              'Mei',
-              'Juni',
-              'Juli',
-              'Agustus',
-              'September',
-              'Oktober',
-              'November',
-              'Desember',
-            ];
-            const data = {
-              labels: labels,
-              datasets: [{
-                label: 'Task Completed',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: result,
-              }]
-            };
-            const config = {
-              type: 'line',
-              data: data,
-              options: {
-                plugins: {
-                  legend: {
-                    display: false
+          // New Task Completed
+          $('#myChart2').remove();
+          $('.chart2').append('<canvas id="myChart2"></canvas>');
+          $.ajax({
+            url: "<?php echo base_url(); ?>/GraphAjax/task_completed_date",
+            type: 'post',
+            dataType: 'json',
+            data: {
+              tanggal: tanggal
+            },
+            success: function(result) {
+              const labels = [
+                'Januari',
+                'Februari',
+                'Maret',
+                'April',
+                'Mei',
+                'Juni',
+                'Juli',
+                'Agustus',
+                'September',
+                'Oktober',
+                'November',
+                'Desember',
+              ];
+              const data = {
+                labels: labels,
+                datasets: [{
+                  label: 'Task Completed',
+                  backgroundColor: 'rgb(255, 99, 132)',
+                  borderColor: 'rgb(255, 99, 132)',
+                  data: result,
+                }]
+              };
+              const config = {
+                type: 'line',
+                data: data,
+                options: {
+                  plugins: {
+                    legend: {
+                      display: false
+                    }
                   }
                 }
-              }
-            };
+              };
 
-            const myChart = new Chart(
-              document.getElementById('myChart2'),
-              config
-            );
-          }
-        });
+              const myChart = new Chart(
+                document.getElementById('myChart2'),
+                config
+              );
+            }
+          });
 
-        // New Task Incompleted
-        $('#myChart3').remove();
-        $('.chart3').append('<canvas id="myChart3"></canvas>');
-        $.ajax({
-          url: "<?php echo base_url(); ?>/GraphAjax/task_incompleted_date",
-          type: 'post',
-          dataType: 'json',
-          data: {
-            tanggal: tanggal
-          },
-          success: function(result) {
-            const labels = [
-              'Januari',
-              'Februari',
-              'Maret',
-              'April',
-              'Mei',
-              'Juni',
-              'Juli',
-              'Agustus',
-              'September',
-              'Oktober',
-              'November',
-              'Desember',
-            ];
-            const data = {
-              labels: labels,
-              datasets: [{
-                label: 'Task Incompleted',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: result,
-              }]
-            };
-            const config = {
-              type: 'line',
-              data: data,
-              options: {
-                plugins: {
-                  legend: {
-                    display: false
+          // New Task Incompleted
+          $('#myChart3').remove();
+          $('.chart3').append('<canvas id="myChart3"></canvas>');
+          $.ajax({
+            url: "<?php echo base_url(); ?>/GraphAjax/task_incompleted_date",
+            type: 'post',
+            dataType: 'json',
+            data: {
+              tanggal: tanggal
+            },
+            success: function(result) {
+              const labels = [
+                'Januari',
+                'Februari',
+                'Maret',
+                'April',
+                'Mei',
+                'Juni',
+                'Juli',
+                'Agustus',
+                'September',
+                'Oktober',
+                'November',
+                'Desember',
+              ];
+              const data = {
+                labels: labels,
+                datasets: [{
+                  label: 'Task Incompleted',
+                  backgroundColor: 'rgb(255, 99, 132)',
+                  borderColor: 'rgb(255, 99, 132)',
+                  data: result,
+                }]
+              };
+              const config = {
+                type: 'line',
+                data: data,
+                options: {
+                  plugins: {
+                    legend: {
+                      display: false
+                    }
                   }
                 }
-              }
-            };
+              };
 
-            const myChart = new Chart(
-              document.getElementById('myChart3'),
-              config
-            );
-          }
-        });
-
+              const myChart = new Chart(
+                document.getElementById('myChart3'),
+                config
+              );
+            }
+          });
+        }
       });
     </script>
   <?php

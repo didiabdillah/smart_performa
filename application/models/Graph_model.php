@@ -101,15 +101,114 @@ class Graph_model extends CI_Model
         return $result->avg_rating;
     }
 
+    function get_avg_speed_completion_global()
+    {
+        $total_task = $this->get_number_of_task_global();
+
+        $this->db->from('performa');
+        $this->db->select('sum(datediff(tanggal_deadline, tanggal_selesai)) as avg_speed');
+        $this->db->where('performa.status', 3);
+        $query = $this->db->get();
+        $result = $query->row();
+
+        if ($total_task == 0) {
+            $total_task = 1;
+        } else {
+            $total_task = $total_task;
+        }
+
+        return $result->avg_speed / $total_task;
+    }
+
+    private function get_number_of_task_global()
+    {
+        $this->db->from('performa');
+        $this->db->where('performa.status', 3);
+        $query = $this->db->get();
+        return $result = $query->num_rows();
+    }
+
     function get_avg_completion_global()
     {
-        $total_karyawan = $this->get_number_of_employee();
+        $total_task = $this->get_number_of_task_global();
 
         $this->db->from('performa');
         $this->db->where('performa.status', 3);
         $query = $this->db->get();
         $result = $query->num_rows();
 
-        return $result / $total_karyawan;
+        if ($total_task == 0) {
+            $total_task = 1;
+        } else {
+            $total_task = $total_task;
+        }
+
+        return ($result / $total_task) * $total_task;
+    }
+
+    function get_avg_rating_employee($employee_id)
+    {
+        $this->db->from('performa');
+        $this->db->select('avg(performa) as avg_rating');
+        $this->db->where('performa.status', 3);
+        $this->db->where('performa.pegawai', $employee_id);
+        $query = $this->db->get();
+        $result = $query->row();
+        return $result->avg_rating;
+    }
+
+    private function get_number_of_task_employee($employee_id)
+    {
+        $this->db->from('performa');
+        $this->db->where('performa.pegawai', $employee_id);
+        $query = $this->db->get();
+        return $result = $query->num_rows();
+    }
+
+    function get_avg_completion_employee($employee_id)
+    {
+        $total_task = $this->get_number_of_task_employee($employee_id);
+
+        $this->db->from('performa');
+        $this->db->where('performa.status', 3);
+        $this->db->where('performa.pegawai', $employee_id);
+        $query = $this->db->get();
+        $result = $query->num_rows();
+
+        if ($total_task == 0) {
+            $total_task = 1;
+        } else {
+            $total_task = $total_task;
+        }
+        return ($result / $total_task) * $total_task;
+    }
+
+    private function get_number_of_task_speed_employee($employee_id)
+    {
+        $this->db->from('performa');
+        $this->db->where('performa.pegawai', $employee_id);
+        $this->db->where('performa.status', 3);
+        $query = $this->db->get();
+        return $result = $query->num_rows();
+    }
+
+    function get_avg_speed_completion_employee($employee_id)
+    {
+        $total_task = $this->get_number_of_task_speed_employee($employee_id);
+
+        $this->db->from('performa');
+        $this->db->select('sum(datediff(tanggal_deadline, tanggal_selesai)) as avg_speed');
+        $this->db->where('performa.status', 3);
+        $this->db->where('performa.pegawai', $employee_id);
+        $query = $this->db->get();
+        $result = $query->row();
+
+        if ($total_task == 0) {
+            $total_task = 1;
+        } else {
+            $total_task = $total_task;
+        }
+
+        return $result->avg_speed / $total_task;
     }
 }

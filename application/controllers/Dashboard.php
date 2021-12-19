@@ -46,9 +46,7 @@ class Dashboard extends CI_Controller
             'top_performer' => $this->graph->get_top_performer(),
             'bottom_performer' => $this->graph->get_bottom_performer(),
         ];
-        // var_dump($this->graph->get_avg_rating_global());
-        // var_dump($this->graph->get_avg_completion_global());
-        // die;
+
         $this->template->load('template', 'admin/dashboard', $data);
     }
 
