@@ -78,7 +78,7 @@
                                   <div class="card-header">
                                       <h5>Top 4 Performer Detail</h5>
                                   </div>
-                                  <div class="table-responsive">
+                                  <div class="table-responsive top-four-performer">
                                       <table class="table" id="topFourTable">
                                           <thead>
                                               <tr>
