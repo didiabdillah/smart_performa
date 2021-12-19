@@ -1200,230 +1200,159 @@
         );
       });
     </script>
+
   <?php
   } elseif ($this->session->userdata('role') == '3' && $this->uri->segment(3) == 'Bag_sdm' || $this->session->userdata('role') == '3' && $this->uri->segment(1) == 'Bag_sdm') {
   ?>
     <!-- Overall Health Index -->
     <script>
       $(function() {
-        $('.chart1').append('<canvas id="myChart1"></canvas>');
-
-        $.ajax({
-          url: "<?php echo base_url(); ?>/GraphAjax/overall_health_index",
-          type: 'post',
-          dataType: 'json',
-          success: function(result) {
-
-            const DATA_COUNT = 5;
-            const NUMBER_CFG = {
-              count: DATA_COUNT,
-              min: 0,
-              max: 100
-            };
-
-            const data = {
-              labels: [
-                'Buruk',
-                'Baik'
-              ],
-              datasets: [{
-                label: 'Overall Health Index',
-                data: result,
-                backgroundColor: [
-                  'rgb(255, 99, 132)',
-                  'rgb(255, 205, 86)'
-                ],
-                hoverOffset: 4
-              }]
-            };
-            const config = {
-              type: 'doughnut',
-              data: data,
-            };
-
-            const myChart = new Chart(
-              document.getElementById('myChart1'),
-              config
-            );
-
-          }
-        });
-      });
-    </script>
-    <!-- Overall Avg data -->
-    <script>
-      $(function() {
         $('.chart2').append('<canvas id="myChart2"></canvas>');
 
-        $.ajax({
-          url: "<?php echo base_url(); ?>/GraphAjax/overall_avg_data",
-          type: 'post',
-          dataType: 'json',
-          success: function(result) {
-            const labels = [
-              'Avg Rating',
-              'Avg Completion',
-              'Avg Speed Completion',
-            ];
-            const data = {
-              labels: labels,
-              datasets: [{
-                label: 'Avg data',
-                backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(75, 192, 192)'],
-                borderColor: 'rgb(255, 99, 132)',
-                data: result,
-              }]
-            };
-            const config = {
-              type: 'bar',
-              data: data,
-              options: {
-                responsive: true,
-                plugins: {
-                  legend: {
-                    display: false,
-                  },
-                }
-              },
-            };
-            const myChart = new Chart(
-              document.getElementById('myChart2'),
-              config
-            );
+        const labels = [
+          'Januari',
+          'Februari',
+          'Maret',
+          'April',
+          'Mei',
+          'June',
+          'Juli',
+          'Agustus',
+          'September',
+          'Oktober',
+          'November',
+          'Desember',
+        ];
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [
+              <?php if ($sukses['bulan'] == 1) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 2) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 3) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 4) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 5) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 6) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 7) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 8) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 9) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 10) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 11) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 12) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>
+            ],
+          }]
+        };
+        const config = {
+          type: 'line',
+          data: data,
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
           }
-        });
+        };
+
+        const myChart = new Chart(
+          document.getElementById('myChart2'),
+          config
+        );
       });
     </script>
-    <!-- EMPLOYEE PERFORMANCE ANALYSIS -->
     <script>
       $(function() {
         $('.chart3').append('<canvas id="myChart3"></canvas>');
-        $.ajax({
-          url: "<?php echo base_url(); ?>/GraphAjax/overall_avg_data",
-          type: 'post',
-          dataType: 'json',
-          success: function(result) {
-            const labels = [
-              'Avg Rating',
-              'Avg Completion',
-              'Avg Speed Completion',
-            ];
-            const data = {
-              labels: labels,
-              datasets: [{
-                label: 'Avg data',
-                backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(75, 192, 192)'],
-                borderColor: 'rgb(255, 99, 132)',
-                data: result,
-              }]
-            };
-            const config = {
-              type: 'bar',
-              data: data,
-              options: {
-                responsive: true,
-                plugins: {
-                  legend: {
-                    display: false,
-                  },
-                }
-              },
-            };
-            const myChart = new Chart(
-              document.getElementById('myChart3'),
-              config
-            );
+
+        const labels = [
+          'Januari',
+          'Februari',
+          'Maret',
+          'April',
+          'Mei',
+          'Juni',
+          'Juli',
+          'Agustus',
+          'September',
+          'Oktober',
+          'November',
+          'Desember',
+        ];
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [
+              <?php if ($failed['bulan'] == 1) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 2) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 3) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 4) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 5) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 6) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 7) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 8) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 9) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 10) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 11) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 12) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>
+            ],
+          }]
+        };
+        const config = {
+          type: 'line',
+          data: data,
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
           }
-        });
+        };
+
+        const myChart = new Chart(
+          document.getElementById('myChart3'),
+          config
+        );
       });
-
-      //When Hosting Provider Option Clicked
-      $(document).on('change', '.option-karyawan', function() {
-        const karyawan_id = $(this).children("option:selected").val();
-
-        $('#myChart3').remove();
-        $('.chart3').append('<canvas id="myChart3"></canvas>');
-
-        if (karyawan_id) {
-          $.ajax({
-            url: "<?php echo base_url(); ?>/GraphAjax/select_employee_performance_analysis",
-            type: 'post',
-            dataType: 'json',
-            data: {
-              karyawan_id: karyawan_id
-            },
-            success: function(result) {
-              const labels = [
-                'Avg Rating',
-                'Avg Completion',
-                'Avg Speed Completion',
-              ];
-              const data = {
-                labels: labels,
-                datasets: [{
-                  label: 'EMPLOYEE PERFORMANCE ANALYSIS',
-                  backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(75, 192, 192)'],
-                  borderColor: 'rgb(255, 99, 132)',
-                  data: result,
-                }]
-              };
-              const config = {
-                type: 'bar',
-                data: data,
-                options: {
-                  responsive: true,
-                  plugins: {
-                    legend: {
-                      display: false,
-                    },
-                  }
-                },
-              };
-              const myChart = new Chart(
-                document.getElementById('myChart3'),
-                config
-              );
+    </script>
+    <script>
+      $(function() {
+        $('.chart4').append('<canvas id="myChart4"></canvas>');
+        const labels = ['Completed', 'Incompleted'];
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'Total',
+            data: [<?= $beres['completed'] ?>, <?= $ongoing['ongoing'] ?>],
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgb(255, 99, 132)',
+          }, ]
+        };
+        const config = {
+          type: 'bar',
+          data: data,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false,
+              },
+              title: {
+                display: true,
+              }
             }
-          });
-        } else {
-          $.ajax({
-            url: "<?php echo base_url(); ?>/GraphAjax/overall_avg_data",
-            type: 'post',
-            dataType: 'json',
-            success: function(result) {
-              const labels = [
-                'Avg Rating',
-                'Avg Completion',
-                'Avg Speed Completion',
-              ];
-              const data = {
-                labels: labels,
-                datasets: [{
-                  label: 'Avg data',
-                  backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(75, 192, 192)'],
-                  borderColor: 'rgb(255, 99, 132)',
-                  data: result,
-                }]
-              };
-              const config = {
-                type: 'bar',
-                data: data,
-                options: {
-                  responsive: true,
-                  plugins: {
-                    legend: {
-                      display: false,
-                    },
-                  }
-                },
-              };
-              const myChart = new Chart(
-                document.getElementById('myChart3'),
-                config
-              );
-            }
-          });
-        }
+          },
+        };
+        const myChart = new Chart(
+          document.getElementById('myChart4'),
+          config
+        );
       });
     </script>
   <?php } ?>
