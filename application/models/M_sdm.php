@@ -70,10 +70,9 @@ class M_sdm extends CI_Model
         return $this->db->query($query)->row_array();
     }
 
-    public function getEmployee()
+    public function getAvgCompletion()
     {
-        $query = "SELECT COUNT(`id`) AS total FROM `users` 
-        ";
+        $query = "SELECT SUM(`status` = 3) / SUM(`status` > 0) * 10 AS average  FROM `performa`";
         return $this->db->query($query)->row_array();
     }
 }
