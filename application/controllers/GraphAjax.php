@@ -37,9 +37,9 @@ class GraphAjax extends CI_Controller
 
     public function select_employee_performance_analysis()
     {
-        $employee = $this->input->post('employee');
+        $employee = $this->input->post('karyawan_id');
 
-        $json = [1, 2, 3];
+        $json = [100, 20, 3];
         echo json_encode($json, true);
     }
 

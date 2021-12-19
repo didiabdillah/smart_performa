@@ -59,7 +59,10 @@
                   <div class="mb-2 row">
                       <label class="col-sm-1 col-form-label">Select Date</label>
                       <div class="col-sm-4">
-                          <input class="form-control digits" type="date" value="">
+                          <input class="form-control digits select-date" type="date" value="">
+                      </div>
+                      <div class="col-sm-2">
+                          <button class="btn btn-sm btn-primary submit-select-date">Submit</button>
                       </div>
                   </div>
 
@@ -76,7 +79,7 @@
                                       <h5>Top 4 Performer Detail</h5>
                                   </div>
                                   <div class="table-responsive">
-                                      <table class="table">
+                                      <table class="table" id="topFourTable">
                                           <thead>
                                               <tr>
                                                   <th scope="col">Nama</th>
