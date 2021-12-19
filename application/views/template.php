@@ -433,6 +433,31 @@
         });
       });
     </script>
+
+    <!-- When Date Selected -->
+    <script>
+      //When Hosting Provider Option Clicked
+      $(document).on('click', '.submit-select-date', function() {
+        const tanggal = $('.select-date').val();
+
+
+        // New Overall Health Index
+        $('#myChart1').remove();
+        $('.chart1').append('<canvas id="myChart1"></canvas>');
+
+        // New Top 4 Performer Detail
+        $('#topFourTable').remove();
+
+        // New Task Completed
+        $('#myChart2').remove();
+        $('.chart2').append('<canvas id="myChart2"></canvas>');
+
+        // New Task Incompleted
+        $('#myChart3').remove();
+        $('.chart3').append('<canvas id="myChart3"></canvas>');
+
+      });
+    </script>
   <?php
   } elseif ($this->session->userdata('role') == '1' && $this->uri->segment(1) == 'Dashboard' || $this->session->userdata('role') == '1' && $this->uri->segment(1) == 'Admin') { //Admin Chart Script
   ?>
@@ -568,6 +593,95 @@
             );
           }
         });
+      });
+
+      //When Hosting Provider Option Clicked
+      $(document).on('change', '.option-karyawan', function() {
+        const karyawan_id = $(this).children("option:selected").val();
+
+        $('#myChart3').remove();
+        $('.chart3').append('<canvas id="myChart3"></canvas>');
+
+        if (karyawan_id) {
+          $.ajax({
+            url: "<?php echo base_url(); ?>/GraphAjax/select_employee_performance_analysis",
+            type: 'post',
+            dataType: 'json',
+            data: {
+              karyawan_id: karyawan_id
+            },
+            success: function(result) {
+              const labels = [
+                'Avg Rating',
+                'Avg Completion',
+                'Avg Speed Completion',
+              ];
+              const data = {
+                labels: labels,
+                datasets: [{
+                  label: 'EMPLOYEE PERFORMANCE ANALYSIS',
+                  backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(75, 192, 192)'],
+                  borderColor: 'rgb(255, 99, 132)',
+                  data: result,
+                }]
+              };
+              const config = {
+                type: 'bar',
+                data: data,
+                options: {
+                  responsive: true,
+                  plugins: {
+                    legend: {
+                      display: false,
+                    },
+                  }
+                },
+              };
+              const myChart = new Chart(
+                document.getElementById('myChart3'),
+                config
+              );
+            }
+          });
+        } else {
+          $.ajax({
+            url: "<?php echo base_url(); ?>/GraphAjax/overall_avg_data",
+            type: 'post',
+            dataType: 'json',
+            success: function(result) {
+              const labels = [
+                'Avg Rating',
+                'Avg Completion',
+                'Avg Speed Completion',
+              ];
+              const data = {
+                labels: labels,
+                datasets: [{
+                  label: 'Avg data',
+                  backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(75, 192, 192)'],
+                  borderColor: 'rgb(255, 99, 132)',
+                  data: result,
+                }]
+              };
+              const config = {
+                type: 'bar',
+                data: data,
+                options: {
+                  responsive: true,
+                  plugins: {
+                    legend: {
+                      display: false,
+                    },
+                  }
+                },
+              };
+              const myChart = new Chart(
+                document.getElementById('myChart3'),
+                config
+              );
+            }
+          });
+        }
       });
     </script>
   <?php

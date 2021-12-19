@@ -75,7 +75,7 @@
                     <div class="col-md-12">
                       <div class="card">
                         <h4>EMPLOYEE PERFORMANCE ANALYSIS</h4>
-                        <select class="form-control " style="width: 100%;" name="karyawan">
+                        <select class="form-control option-karyawan" style="width: 100%;" name="karyawan">
                           <option value="">Pilih Karyawan</option>
                           <?php
                           foreach ($employee as $row) {
