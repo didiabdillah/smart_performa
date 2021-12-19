@@ -67,7 +67,7 @@
             </div>
             <div class="modal-body form">
                 <form action="#" id="form" class="needs-validation was-validated" novalidate="">
-                    <input type="text" value="" name="id"/> 
+                    <input type="hidden" value="" name="id"/> 
                     <div class="form-body">
           
                         <div class="col-md-12 mb-5">
