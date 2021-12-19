@@ -54,7 +54,17 @@ class Bag_sdm extends CI_Controller
 
     function index()
     {
-        $this->template->load('template', 'sdm/dashboard');
+        $this->load->model('Graph_model', 'graph');
+        $data = [
+            'employee'    => $this->graph->get_employee(),
+            'number_of_employee'    => $this->graph->get_number_of_employee(),
+            'total_task_accepted'   => $this->graph->get_total_task_accepted(),
+            'total_task_completed'   => $this->graph->get_total_task_completed(),
+            'top_performer' => $this->graph->get_top_performer(),
+            'bottom_performer' => $this->graph->get_bottom_performer(),
+            'avgrating' => $this->graph->get_avg_rating_global(),
+        ];
+        $this->template->load('template', 'sdm/dashboard', $data);
     }
 
     function list_pekerja()

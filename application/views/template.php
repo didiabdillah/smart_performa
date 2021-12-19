@@ -440,173 +440,22 @@
       $(document).on('click', '.submit-select-date', function() {
         const tanggal = $('.select-date').val();
 
-        if (tanggal) {
-          // New Overall Health Index
-          $('#myChart1').remove();
-          $('.chart1').append('<canvas id="myChart1"></canvas>');
-          $.ajax({
-            url: "<?php echo base_url(); ?>/GraphAjax/overall_health_index_date",
-            type: 'post',
-            dataType: 'json',
-            data: {
-              tanggal: tanggal
-            },
-            success: function(result) {
 
-              const DATA_COUNT = 5;
-              const NUMBER_CFG = {
-                count: DATA_COUNT,
-                min: 0,
-                max: 100
-              };
+        // New Overall Health Index
+        $('#myChart1').remove();
+        $('.chart1').append('<canvas id="myChart1"></canvas>');
 
-              const data = {
-                labels: [
-                  'Buruk',
-                  'Baik'
-                ],
-                datasets: [{
-                  label: 'Overall Health Index',
-                  data: result,
-                  backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 205, 86)'
-                  ],
-                  hoverOffset: 4
-                }]
-              };
-              const config = {
-                type: 'doughnut',
-                data: data,
-              };
+        // New Top 4 Performer Detail
+        $('#topFourTable').remove();
 
-              const myChart = new Chart(
-                document.getElementById('myChart1'),
-                config
-              );
+        // New Task Completed
+        $('#myChart2').remove();
+        $('.chart2').append('<canvas id="myChart2"></canvas>');
 
-            }
-          });
+        // New Task Incompleted
+        $('#myChart3').remove();
+        $('.chart3').append('<canvas id="myChart3"></canvas>');
 
-          // New Top 4 Performer Detail
-          $('#topFourTable').remove();
-          $.ajax({
-            url: "<?php echo base_url(); ?>/GraphAjax/top_four_performer_date",
-            type: 'post',
-            data: {
-              tanggal: tanggal
-            },
-            success: function(result) {
-              $('.top-four-performer').html(result);
-            }
-          });
-
-          // New Task Completed
-          $('#myChart2').remove();
-          $('.chart2').append('<canvas id="myChart2"></canvas>');
-          $.ajax({
-            url: "<?php echo base_url(); ?>/GraphAjax/task_completed_date",
-            type: 'post',
-            dataType: 'json',
-            data: {
-              tanggal: tanggal
-            },
-            success: function(result) {
-              const labels = [
-                'Januari',
-                'Februari',
-                'Maret',
-                'April',
-                'Mei',
-                'Juni',
-                'Juli',
-                'Agustus',
-                'September',
-                'Oktober',
-                'November',
-                'Desember',
-              ];
-              const data = {
-                labels: labels,
-                datasets: [{
-                  label: 'Task Completed',
-                  backgroundColor: 'rgb(255, 99, 132)',
-                  borderColor: 'rgb(255, 99, 132)',
-                  data: result,
-                }]
-              };
-              const config = {
-                type: 'line',
-                data: data,
-                options: {
-                  plugins: {
-                    legend: {
-                      display: false
-                    }
-                  }
-                }
-              };
-
-              const myChart = new Chart(
-                document.getElementById('myChart2'),
-                config
-              );
-            }
-          });
-
-          // New Task Incompleted
-          $('#myChart3').remove();
-          $('.chart3').append('<canvas id="myChart3"></canvas>');
-          $.ajax({
-            url: "<?php echo base_url(); ?>/GraphAjax/task_incompleted_date",
-            type: 'post',
-            dataType: 'json',
-            data: {
-              tanggal: tanggal
-            },
-            success: function(result) {
-              const labels = [
-                'Januari',
-                'Februari',
-                'Maret',
-                'April',
-                'Mei',
-                'Juni',
-                'Juli',
-                'Agustus',
-                'September',
-                'Oktober',
-                'November',
-                'Desember',
-              ];
-              const data = {
-                labels: labels,
-                datasets: [{
-                  label: 'Task Incompleted',
-                  backgroundColor: 'rgb(255, 99, 132)',
-                  borderColor: 'rgb(255, 99, 132)',
-                  data: result,
-                }]
-              };
-              const config = {
-                type: 'line',
-                data: data,
-                options: {
-                  plugins: {
-                    legend: {
-                      display: false
-                    }
-                  }
-                }
-              };
-
-              const myChart = new Chart(
-                document.getElementById('myChart3'),
-                config
-              );
-            }
-          });
-        }
       });
     </script>
   <?php
@@ -971,95 +820,6 @@
           }
         });
       });
-
-      //When Hosting Provider Option Clicked
-      $(document).on('change', '.option-karyawan', function() {
-        const karyawan_id = $(this).children("option:selected").val();
-
-        $('#myChart3').remove();
-        $('.chart3').append('<canvas id="myChart3"></canvas>');
-
-        if (karyawan_id) {
-          $.ajax({
-            url: "<?php echo base_url(); ?>/GraphAjax/select_employee_performance_analysis",
-            type: 'post',
-            dataType: 'json',
-            data: {
-              karyawan_id: karyawan_id
-            },
-            success: function(result) {
-              const labels = [
-                'Avg Rating',
-                'Avg Completion',
-                'Avg Speed Completion',
-              ];
-              const data = {
-                labels: labels,
-                datasets: [{
-                  label: 'EMPLOYEE PERFORMANCE ANALYSIS',
-                  backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(75, 192, 192)'],
-                  borderColor: 'rgb(255, 99, 132)',
-                  data: result,
-                }]
-              };
-              const config = {
-                type: 'bar',
-                data: data,
-                options: {
-                  responsive: true,
-                  plugins: {
-                    legend: {
-                      display: false,
-                    },
-                  }
-                },
-              };
-              const myChart = new Chart(
-                document.getElementById('myChart3'),
-                config
-              );
-            }
-          });
-        } else {
-          $.ajax({
-            url: "<?php echo base_url(); ?>/GraphAjax/overall_avg_data",
-            type: 'post',
-            dataType: 'json',
-            success: function(result) {
-              const labels = [
-                'Avg Rating',
-                'Avg Completion',
-                'Avg Speed Completion',
-              ];
-              const data = {
-                labels: labels,
-                datasets: [{
-                  label: 'Avg data',
-                  backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(75, 192, 192)'],
-                  borderColor: 'rgb(255, 99, 132)',
-                  data: result,
-                }]
-              };
-              const config = {
-                type: 'bar',
-                data: data,
-                options: {
-                  responsive: true,
-                  plugins: {
-                    legend: {
-                      display: false,
-                    },
-                  }
-                },
-              };
-              const myChart = new Chart(
-                document.getElementById('myChart3'),
-                config
-              );
-            }
-          });
-        }
-      });
     </script>
   <?php
   } elseif ($this->session->userdata('role') == '3' && $this->uri->segment(1) == 'Dashboard') {
@@ -1288,8 +1048,163 @@
       });
     </script>
   <?php
+  } elseif ($this->session->userdata('role') == '3' && $this->uri->segment(1) == 'Dashboard' || $this->session->userdata('role') == '3' && $this->uri->segment(1) == 'Bag_sdm') {
+  ?>
+    <script>
+      $(function() {
+        $('.chart2').append('<canvas id="myChart2"></canvas>');
+
+        const labels = [
+          'Januari',
+          'Februari',
+          'Maret',
+          'April',
+          'Mei',
+          'June',
+          'Juli',
+          'Agustus',
+          'September',
+          'Oktober',
+          'November',
+          'Desember',
+        ];
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [
+              <?php if ($sukses['bulan'] == 1) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 2) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 3) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 4) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 5) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 6) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 7) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 8) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 9) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 10) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 11) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($sukses['bulan'] == 12) : ?> <?= $sukses['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>
+            ],
+          }]
+        };
+        const config = {
+          type: 'line',
+          data: data,
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        };
+
+        const myChart = new Chart(
+          document.getElementById('myChart2'),
+          config
+        );
+      });
+    </script>
+    <script>
+      $(function() {
+        $('.chart3').append('<canvas id="myChart3"></canvas>');
+
+        const labels = [
+          'Januari',
+          'Februari',
+          'Maret',
+          'April',
+          'Mei',
+          'Juni',
+          'Juli',
+          'Agustus',
+          'September',
+          'Oktober',
+          'November',
+          'Desember',
+        ];
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [
+              <?php if ($failed['bulan'] == 1) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 2) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 3) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 4) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 5) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 6) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 7) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 8) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 9) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 10) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 11) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>,
+              <?php if ($failed['bulan'] == 12) : ?> <?= $failed['jumlah'] ?> <?php else : ?> 0 <?php endif; ?>
+            ],
+          }]
+        };
+        const config = {
+          type: 'line',
+          data: data,
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        };
+
+        const myChart = new Chart(
+          document.getElementById('myChart3'),
+          config
+        );
+      });
+    </script>
+    <script>
+      $(function() {
+        $('.chart4').append('<canvas id="myChart4"></canvas>');
+        const labels = ['Completed', 'Incompleted'];
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'Total',
+            data: [<?= $beres['completed'] ?>, <?= $ongoing['ongoing'] ?>],
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgb(255, 99, 132)',
+          }, ]
+        };
+        const config = {
+          type: 'bar',
+          data: data,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false,
+              },
+              title: {
+                display: true,
+              }
+            }
+          },
+        };
+        const myChart = new Chart(
+          document.getElementById('myChart4'),
+          config
+        );
+      });
+    </script>
+
+  <?php
   } elseif ($this->session->userdata('role') == '3' && $this->uri->segment(3) == 'Bag_sdm' || $this->session->userdata('role') == '3' && $this->uri->segment(1) == 'Bag_sdm') {
   ?>
+    <!-- Overall Health Index -->
     <script>
       $(function() {
         $('.chart2').append('<canvas id="myChart2"></canvas>');
