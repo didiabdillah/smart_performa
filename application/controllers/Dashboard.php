@@ -28,7 +28,7 @@ class Dashboard extends CI_Controller
         } else if ($this->session->userdata('role') == '2') {
             redirect(base_url('Manager'));
         } else if ($this->session->userdata('role') == '3') {
-            redirect(base_url('Bag_sdm'));
+            redirect(base_url('Dashboard/home'));
         } else if ($this->session->userdata('role') == '4') {
             redirect(base_url('Pegawai'));
         } else {
