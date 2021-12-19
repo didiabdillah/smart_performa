@@ -7,8 +7,8 @@
     <meta name="description" content="Cuba admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Cuba admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
-    <link rel="icon" href="<?= base_url()?>assets/images/logo.png" type="image/x-icon">
-    <link rel="shortcut icon" href="<?= base_url()?>assets/images/logo.png" type="image/x-icon">
+    <link rel="icon" href="<?= base_url()?>assets/images/ico.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= base_url()?>assets/images/ico.png" type="image/x-icon">
     <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?render=onload&hl=en" async defer></script>
     <title>Smart Performa</title>
   </head>

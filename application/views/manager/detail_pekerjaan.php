@@ -36,13 +36,20 @@
                         <label for="deskripsi">Deskripsi : </label>
                         <textarea name="" id="deskripsi" cols="30" rows="5" class="form-control"> <?= $list['deskripsi_layanan'] ?> </textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="row">
+                    <div class="form-group col-md-6">
                         <label for="deskripsi">Tanggal Input Permohonan </label>
                         <input type="datetime" class="form-control" value="<?= tanggal_indo($list['created_at']) ?>">
                     </div>
+                   
+                    <div class="form-group col-md-6">
+                        <label for="deskripsi">Tanggal Deadline </label>
+                        <input type="datetime" class="form-control" value="<?= tanggal_indo($list['tanggal_deadline']) ?>">
+                    </div>
+                    </div>
                     <div class="form-group">
                         <select class="form-control" id="validationTooltip04" data-original-title="Pilih Pegawai" title="Pilih Pegawai" required="true" name="pegawai">
-                            <option value="">Pilih Pegawai</option>
+                            <option value="">Pilih Pegawai yang Mengerjakan</option>
                             <?php
                             foreach ($pegawai as $data) {
                             ?>
