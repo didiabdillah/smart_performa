@@ -72,6 +72,7 @@ class Graph_model extends CI_Model
         $this->db->from('performa');
         $this->db->limit(5);
         $query = $this->db->get();
+
         return $query->result();
     }
 
