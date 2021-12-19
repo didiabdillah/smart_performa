@@ -23,6 +23,14 @@ class GraphAjax extends CI_Controller
         echo json_encode($json, true);
     }
 
+    public function overall_health_index_date()
+    {
+        $tanggal = $this->input->post('tanggal');
+
+        $json = [2, 4];
+        echo json_encode($json, true);
+    }
+
     public function overall_avg_data()
     {
         $json = [1, 2, 3];
@@ -49,9 +57,25 @@ class GraphAjax extends CI_Controller
         echo json_encode($json, true);
     }
 
+    public function task_completed_date()
+    {
+        $tanggal = $this->input->post('tanggal');
+
+        $json = [10, 200, 3000, 40, 500, 6000, 70, 800, 9000, 100, 110, 12000];
+        echo json_encode($json, true);
+    }
+
     public function task_incompleted()
     {
         $json = [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+        echo json_encode($json, true);
+    }
+
+    public function task_incompleted_date()
+    {
+        $tanggal = $this->input->post('tanggal');
+
+        $json = [120, 1100, 10000, 90, 800, 7000, 60, 500, 4000, 30, 200, 1000];
         echo json_encode($json, true);
     }
 
@@ -61,5 +85,31 @@ class GraphAjax extends CI_Controller
 
         $json = [1, 2, 3];
         echo json_encode($json, true);
+    }
+
+    public function top_four_performer_date()
+    {
+        $tanggal = $this->input->post('tanggal');
+
+        $html = '<table class="table" id="topFourTable">
+                                          <thead>
+                                              <tr>
+                                                  <th scope="col">Nama</th>
+                                                  <th scope="col">Avg Rating</th>
+                                                  <th scope="col">Avg Completion</th>
+                                                  <th scope="col">Avg Speed</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                                                                              <tr>
+                                                      <td><nama</td>
+                                                      <td>1</td>
+                                                      <td>2</td>
+                                                      <td>3</td>
+                                                  </tr>
+                                                                                       </tbody>
+                                      </table>';
+
+        echo $html;
     }
 }
