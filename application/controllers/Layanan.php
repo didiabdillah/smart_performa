@@ -71,7 +71,8 @@ class Layanan extends CI_Controller
         if (!$this->input->is_ajax_request()) {
             redirect('Login');
         }
-        $list = $this->layanan->get_datatables();
+        $pegawai = null;
+        $list = $this->layanan->get_datatables($this->session->userdata('user_id'), $pegawai);
         $data = array();
         $no = $_POST['start'];
         $nomor = 1;
@@ -109,8 +110,8 @@ class Layanan extends CI_Controller
 
         $output = array(
             "draw" => $_POST['draw'],
-            "recordsTotal" => $this->layanan->count_all(),
-            "recordsFiltered" => $this->layanan->count_filtered(),
+            "recordsTotal" => $this->layanan->count_all($this->session->userdata('user_id'), $pegawai),
+            "recordsFiltered" => $this->layanan->count_filtered($this->session->userdata('user_id'), $pegawai),
             "data" => $data,
         );
         //output to json format
@@ -123,7 +124,8 @@ class Layanan extends CI_Controller
         if (!$this->input->is_ajax_request()) {
             redirect('Login');
         }
-        $list = $this->layanan->get_datatables($this->session->userdata('user_id'));
+        $pemohon = null;
+        $list = $this->layanan->get_datatables($pemohon, $this->session->userdata('user_id'));
         $data = array();
         $no = $_POST['start'];
         $nomor = 1;
@@ -158,8 +160,8 @@ class Layanan extends CI_Controller
 
         $output = array(
             "draw" => $_POST['draw'],
-            "recordsTotal" => $this->layanan->count_all($this->session->userdata('user_id')),
-            "recordsFiltered" => $this->layanan->count_filtered($this->session->userdata('user_id')),
+            "recordsTotal" => $this->layanan->count_all($pemohon, $this->session->userdata('user_id')),
+            "recordsFiltered" => $this->layanan->count_filtered($pemohon, $this->session->userdata('user_id')),
             "data" => $data,
         );
         //output to json format

@@ -53,10 +53,13 @@ class M_layanan extends CI_Model
         }
     }
 
-    function get_datatables($pegawai = null)
+    function get_datatables($pemohon = null, $pegawai = null)
     {
         if ($pegawai != null) {
             $this->db->where('pegawai', $pegawai);
+        }
+        if ($pemohon != null) {
+            $this->db->where('pemohon', $pemohon);
         }
         $this->_get_datatables_query();
         if ($_POST['length'] != -1)
@@ -65,20 +68,26 @@ class M_layanan extends CI_Model
         return $query->result();
     }
 
-    function count_filtered($pegawai = null)
+    function count_filtered($pemohon = null, $pegawai = null)
     {
         if ($pegawai != null) {
             $this->db->where('pegawai', $pegawai);
+        }
+        if ($pemohon != null) {
+            $this->db->where('pemohon', $pemohon);
         }
         $this->_get_datatables_query();
         $query = $this->db->get();
         return $query->num_rows();
     }
 
-    public function count_all($pegawai = null)
+    public function count_all($pemohon = null, $pegawai = null)
     {
         if ($pegawai != null) {
             $this->db->where('pegawai', $pegawai);
+        }
+        if ($pemohon != null) {
+            $this->db->where('pemohon', $pemohon);
         }
         $this->db->from($this->table);
         return $this->db->count_all_results();
