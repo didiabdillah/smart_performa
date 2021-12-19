@@ -39,11 +39,16 @@ class Dashboard extends CI_Controller
     function home()
     {
         $data = [
+            'employee'    => $this->graph->get_employee(),
             'number_of_employee'    => $this->graph->get_number_of_employee(),
             'total_task_accepted'   => $this->graph->get_total_task_accepted(),
             'total_task_completed'   => $this->graph->get_total_task_completed(),
+            'top_performer' => $this->graph->get_top_performer(),
+            'bottom_performer' => $this->graph->get_bottom_performer(),
         ];
-
+        // var_dump($this->graph->get_avg_rating_global());
+        // var_dump($this->graph->get_avg_completion_global());
+        // die;
         $this->template->load('template', 'admin/dashboard', $data);
     }
 
@@ -53,6 +58,7 @@ class Dashboard extends CI_Controller
             'number_of_employee'    => $this->graph->get_number_of_employee(),
             'total_task_accepted'   => $this->graph->get_total_task_accepted(),
             'total_task_completed'   => $this->graph->get_total_task_completed(),
+            'top_performer_detail' => $this->graph->get_top_performer_detail(),
         ];
 
         $this->template->load('template', 'admin/analytical', $data);

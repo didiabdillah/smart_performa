@@ -9,7 +9,7 @@ class Manager extends CI_Controller
         parent::__construct();
         $this->load->helper('url', 'slug');
         $this->load->model('Dashboard_model', 'model');
-        // $this->load->model('Pegawai_model','model');
+        $this->load->model('Graph_model', 'graph');
 
         if (!$this->session->userdata('user_id')) {
             redirect(base_url('Login'));
@@ -19,7 +19,16 @@ class Manager extends CI_Controller
 
     function index()
     {
-        $this->template->load('template', 'manager/dashboard');
+        $data = [
+            'employee'    => $this->graph->get_employee(),
+            'number_of_employee'    => $this->graph->get_number_of_employee(),
+            'total_task_accepted'   => $this->graph->get_total_task_accepted(),
+            'total_task_completed'   => $this->graph->get_total_task_completed(),
+            'top_performer' => $this->graph->get_top_performer(),
+            'bottom_performer' => $this->graph->get_bottom_performer(),
+        ];
+
+        $this->template->load('template', 'manager/dashboard', $data);
     }
 
     // function data_layanan()

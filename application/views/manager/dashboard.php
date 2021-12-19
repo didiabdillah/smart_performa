@@ -23,7 +23,7 @@
                         <div class="media static-top-widget">
                             <div class="media-body">
                                 <h6 class="font-roboto">Number Of Employee</h6>
-                                <h4 class="mb-0 counter">6659</h4>
+                                <h4 class="mb-0"><?= $number_of_employee; ?></h4>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                         <div class="media static-top-widget">
                             <div class="media-body">
                                 <h6 class="font-roboto">Total Task Accepted</h6>
-                                <h4 class="mb-0 counter">6659</h4>
+                                <h4 class="mb-0"><?= $total_task_accepted; ?></h4>
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                         <div class="media static-top-widget">
                             <div class="media-body">
                                 <h6 class="font-roboto">Total Task Completed</h6>
-                                <h4 class="mb-0 counter">6659</h4>
+                                <h4 class="mb-0"><?= $total_task_completed ?></h4>
                             </div>
                         </div>
                     </div>
@@ -77,6 +77,13 @@
                                 <h4>EMPLOYEE PERFORMANCE ANALYSIS</h4>
                                 <select class="form-control " style="width: 100%;" name="karyawan">
                                     <option value="">Pilih Karyawan</option>
+                                    <?php
+                                    foreach ($employee as $row) {
+                                    ?>
+                                        <option value="<?= $row->id; ?>"><?= $row->nama; ?></option>
+                                    <?php
+                                    }
+                                    ?>
                                 </select>
                                 <div class="chart3"></div>
                             </div>
@@ -93,11 +100,13 @@
                                 </div>
                                 <div class="card-body">
                                     <ul class="list-group">
-                                        <li class="list-group-item">Karyawan 1</li>
-                                        <li class="list-group-item">Karyawan 2</li>
-                                        <li class="list-group-item">Karyawan 3</li>
-                                        <li class="list-group-item">Karyawan 4</li>
-                                        <li class="list-group-item">Karyawan 5</li>
+                                        <?php
+                                        foreach ($top_performer as $row) {
+                                        ?>
+                                            <li class="list-group-item"><?= $row->nama; ?></li>
+                                        <?php
+                                        }
+                                        ?>
                                     </ul>
                                 </div>
                             </div>
@@ -110,11 +119,13 @@
                                 </div>
                                 <div class="card-body">
                                     <ul class="list-group">
-                                        <li class="list-group-item">Karyawan 1</li>
-                                        <li class="list-group-item">Karyawan 2</li>
-                                        <li class="list-group-item">Karyawan 3</li>
-                                        <li class="list-group-item">Karyawan 4</li>
-                                        <li class="list-group-item">Karyawan 5</li>
+                                        <?php
+                                        foreach ($bottom_performer as $row) {
+                                        ?>
+                                            <li class="list-group-item"><?= $row->nama; ?></li>
+                                        <?php
+                                        }
+                                        ?>
                                     </ul>
                                 </div>
                             </div>

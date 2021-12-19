@@ -77,6 +77,13 @@
                         <h4>EMPLOYEE PERFORMANCE ANALYSIS</h4>
                         <select class="form-control " style="width: 100%;" name="karyawan">
                           <option value="">Pilih Karyawan</option>
+                          <?php
+                          foreach ($employee as $row) {
+                          ?>
+                            <option value="<?= $row->id; ?>"><?= $row->nama; ?></option>
+                          <?php
+                          }
+                          ?>
                         </select>
                         <div class="chart3"></div>
                       </div>
@@ -93,11 +100,13 @@
                         </div>
                         <div class="card-body">
                           <ul class="list-group">
-                            <li class="list-group-item">Karyawan 1</li>
-                            <li class="list-group-item">Karyawan 2</li>
-                            <li class="list-group-item">Karyawan 3</li>
-                            <li class="list-group-item">Karyawan 4</li>
-                            <li class="list-group-item">Karyawan 5</li>
+                            <?php
+                            foreach ($top_performer as $row) {
+                            ?>
+                              <li class="list-group-item"><?= $row->nama; ?></li>
+                            <?php
+                            }
+                            ?>
                           </ul>
                         </div>
                       </div>
@@ -110,11 +119,13 @@
                         </div>
                         <div class="card-body">
                           <ul class="list-group">
-                            <li class="list-group-item">Karyawan 1</li>
-                            <li class="list-group-item">Karyawan 2</li>
-                            <li class="list-group-item">Karyawan 3</li>
-                            <li class="list-group-item">Karyawan 4</li>
-                            <li class="list-group-item">Karyawan 5</li>
+                            <?php
+                            foreach ($bottom_performer as $row) {
+                            ?>
+                              <li class="list-group-item"><?= $row->nama; ?></li>
+                            <?php
+                            }
+                            ?>
                           </ul>
                         </div>
                       </div>

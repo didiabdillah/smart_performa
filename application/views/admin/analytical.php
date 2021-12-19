@@ -86,36 +86,14 @@
                                               </tr>
                                           </thead>
                                           <tbody>
-                                              <tr>
-                                                  <td>Alexander</td>
-                                                  <td>1</td>
-                                                  <td>2</td>
-                                                  <td>3</td>
-                                              </tr>
-                                              <tr>
-                                                  <td>John Deo</td>
-                                                  <td>4</td>
-                                                  <td>5</td>
-                                                  <td>6</td>
-                                              </tr>
-                                              <tr>
-                                                  <td>Randy Orton</td>
-                                                  <td>7</td>
-                                                  <td>9</td>
-                                                  <td>10</td>
-                                              </tr>
-                                              <tr>
-                                                  <td>Randy Mark</td>
-                                                  <td>11</td>
-                                                  <td>12</td>
-                                                  <td>13</td>
-                                              </tr>
-                                              <tr>
-                                                  <td>Ram Jacob</td>
-                                                  <td>14</td>
-                                                  <td>15</td>
-                                                  <td>16</td>
-                                              </tr>
+                                              <?php foreach ($top_performer_detail as $row) { ?>
+                                                  <tr>
+                                                      <td><?= $row->nama; ?></td>
+                                                      <td>1</td>
+                                                      <td>2</td>
+                                                      <td>3</td>
+                                                  </tr>
+                                              <?php } ?>
                                           </tbody>
                                       </table>
                                   </div>
