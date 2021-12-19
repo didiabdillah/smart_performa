@@ -1200,7 +1200,6 @@
         );
       });
     </script>
-
   <?php
   } elseif ($this->session->userdata('role') == '3' && $this->uri->segment(3) == 'Bag_sdm' || $this->session->userdata('role') == '3' && $this->uri->segment(1) == 'Bag_sdm') {
   ?>
