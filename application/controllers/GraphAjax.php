@@ -86,7 +86,17 @@ class GraphAjax extends CI_Controller
 
     public function task_completed()
     {
-        $json = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        $task_completed = $this->graph->get_task_completed();
+        $month = [];
+
+        for ($i = 0; $i <= 11; $i++) {
+            $month[$i] = date('F', strtotime("-" . $i . " month"));
+        }
+
+        $json = [
+            "result_data" => $task_completed,
+            "month" => array_reverse($month)
+        ];
         echo json_encode($json, true);
     }
 
@@ -100,7 +110,17 @@ class GraphAjax extends CI_Controller
 
     public function task_incompleted()
     {
-        $json = [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+        $task_incompleted = $this->graph->get_task_incompleted();
+        $month = [];
+
+        for ($i = 0; $i <= 11; $i++) {
+            $month[$i] = date('F', strtotime("-" . $i . " month"));
+        }
+
+        $json = [
+            "result_data" => $task_incompleted,
+            "month" => array_reverse($month)
+        ];
         echo json_encode($json, true);
     }
 

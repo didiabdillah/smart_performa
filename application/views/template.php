@@ -337,27 +337,14 @@
           type: 'post',
           dataType: 'json',
           success: function(result) {
-            const labels = [
-              'Januari',
-              'Februari',
-              'Maret',
-              'April',
-              'Mei',
-              'Juni',
-              'Juli',
-              'Agustus',
-              'September',
-              'Oktober',
-              'November',
-              'Desember',
-            ];
+            const labels = result.month;
             const data = {
               labels: labels,
               datasets: [{
                 label: 'Task Completed',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: result,
+                data: result.result_data,
               }]
             };
             const config = {
@@ -390,27 +377,14 @@
           type: 'post',
           dataType: 'json',
           success: function(result) {
-            const labels = [
-              'Januari',
-              'Februari',
-              'Maret',
-              'April',
-              'Mei',
-              'Juni',
-              'Juli',
-              'Agustus',
-              'September',
-              'Oktober',
-              'November',
-              'Desember',
-            ];
+            const labels = result.month
             const data = {
               labels: labels,
               datasets: [{
                 label: 'Task Incompleted',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: result,
+                data: result.result_data,
               }]
             };
             const config = {

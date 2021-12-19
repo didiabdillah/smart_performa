@@ -77,18 +77,38 @@ class Graph_model extends CI_Model
 
     function get_task_completed()
     {
-        $this->db->from('performa');
-        $this->db->where('performa.status', 3);
-        $query = $this->db->get();
-        return $query->num_rows();
+        $output = [];
+
+        for ($i = 0; $i <= 11; $i++) {
+            $this->db->from('performa');
+            $this->db->where('performa.status', 3);
+            $this->db->where('DATE(tanggal_selesai) >=', date('Y-m-d', strtotime("-" . $i + 1 . " month")));
+            $this->db->where('DATE(tanggal_selesai) <=', date('Y-m-d', strtotime("-" . $i  . " month")));
+            $query = $this->db->get();
+            $value = $query->num_rows();
+
+            $output[$i] = $value;
+        }
+
+        return array_reverse($output);
     }
 
     function get_task_incompleted()
     {
-        $this->db->from('performa');
-        $this->db->where('performa.status', 3);
-        $query = $this->db->get();
-        return $query->num_rows();
+        $output = [];
+
+        for ($i = 0; $i <= 11; $i++) {
+            $this->db->from('performa');
+            $this->db->where('performa.status != ', 3);
+            $this->db->where('DATE(created_at) >=', date('Y-m-d', strtotime("-" . $i + 1 . " month")));
+            $this->db->where('DATE(created_at) <=', date('Y-m-d', strtotime("-" . $i  . " month")));
+            $query = $this->db->get();
+            $value = $query->num_rows();
+
+            $output[$i] = $value;
+        }
+
+        return array_reverse($output);
     }
 
     function get_avg_rating_global()
