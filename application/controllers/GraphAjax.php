@@ -19,7 +19,14 @@ class GraphAjax extends CI_Controller
 
     public function overall_health_index()
     {
-        $json = [1, 2];
+        $avg_rating = $this->graph->get_avg_rating_global();
+        $avg_completion = $this->graph->get_avg_completion_global();
+        $avg_speed_completion = $this->graph->get_avg_speed_completion_global();
+
+        $sum = $avg_rating + $avg_speed_completion + $avg_completion;
+        $avg = ($sum / 3) * 10;
+
+        $json = [100 - $avg, $avg];
         echo json_encode($json, true);
     }
 
@@ -33,7 +40,11 @@ class GraphAjax extends CI_Controller
 
     public function overall_avg_data()
     {
-        $json = [1, 2, 3];
+        $avg_rating = $this->graph->get_avg_rating_global();
+        $avg_completion = $this->graph->get_avg_completion_global();
+        $avg_speed_completion = $this->graph->get_avg_speed_completion_global();
+
+        $json = [$avg_rating, $avg_completion, $avg_speed_completion];
         echo json_encode($json, true);
     }
 
@@ -47,7 +58,29 @@ class GraphAjax extends CI_Controller
     {
         $employee = $this->input->post('karyawan_id');
 
-        $json = [100, 20, 3];
+        $avg_rating = $this->graph->get_avg_rating_employee($employee);
+        $avg_completion = $this->graph->get_avg_completion_employee($employee);
+        $avg_speed_completion = $this->graph->get_avg_speed_completion_employee($employee);
+
+        if ($avg_rating) {
+            $avg_rating = $avg_rating;
+        } else {
+            $avg_rating = 0;
+        }
+
+        if ($avg_completion) {
+            $avg_completion = $avg_completion;
+        } else {
+            $avg_completion = 0;
+        }
+
+        if ($avg_speed_completion) {
+            $avg_speed_completion = $avg_speed_completion;
+        } else {
+            $avg_speed_completion = 0;
+        }
+
+        $json = [$avg_rating, $avg_completion, $avg_speed_completion];
         echo json_encode($json, true);
     }
 
